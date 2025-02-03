@@ -1,0 +1,12 @@
+node -v
+npm -v
+
+npm install cypress --save-dev
+
+mkdir mi-proyecto-cypress
+cd mi-proyecto-cypress
+npm init -y
+npm install cypress --save-dev
+
+npx cypress open
+npx cypress run
