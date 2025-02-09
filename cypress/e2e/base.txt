@@ -1,0 +1,44 @@
+// Este es un archivo de prueba básico de Cypress
+describe('Nombre del conjunto de pruebas', () => {
+
+  // Caso de prueba 1
+  it('Debería abrir la página de inicio y comprobar el título', () => {
+    // Abre la URL que deseas probar
+    cy.visit('https://tusitio.com');
+    
+    // Verifica si el título de la página es el esperado
+    cy.title().should('include', 'Título Esperado'); // Asegúrate de cambiar el texto
+    
+    // Verifica que un elemento específico esté visible
+    cy.get('.elemento-clase').should('be.visible');
+  });
+
+  // Caso de prueba 2
+  it('Debería hacer clic en un botón y verificar la acción', () => {
+    // Visita la URL
+    cy.visit('https://tusitio.com');
+    
+    // Hace clic en un botón
+    cy.get('.boton-clase').click();
+    
+    // Verifica el cambio esperado después del clic (por ejemplo, si aparece un nuevo elemento)
+    cy.get('.nuevo-elemento').should('be.visible');
+  });
+
+  // Caso de prueba 3
+  it('Debería enviar un formulario y comprobar el mensaje de éxito', () => {
+    // Visita la página con el formulario
+    cy.visit('https://tusitio.com/formulario');
+    
+    // Completa el formulario
+    cy.get('input[name="nombre"]').type('Juan Pérez');
+    cy.get('input[name="email"]').type('juan@correo.com');
+    
+    // Envía el formulario
+    cy.get('form').submit();
+    
+    // Verifica si el mensaje de éxito es visible
+    cy.contains('Formulario enviado con éxito').should('be.visible');
+  });
+
+});
