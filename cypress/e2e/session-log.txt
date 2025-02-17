@@ -1,0 +1,6 @@
+[2025-02-17T10:34:46.405Z] Respuesta 200 OK para la URL: https://aenatravel.aena.es/es/
+[2025-02-17T10:34:46.526Z] Respuesta 200 OK para la URL: https://aenatravel.aena.es/es/
+[2025-02-17T10:34:48.075Z] Navegando en Chrome
+[2025-02-17T10:34:48.076Z] Navegando en Firefox
+[2025-02-17T10:34:48.091Z] Error al ejecutar el script: no such element: Unable to locate element: {"method":"css selector","selector":"#gigya-login-form .gigya-input-text"}
+  (Session info: chrome=133.0.6943.99)

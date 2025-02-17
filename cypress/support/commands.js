@@ -23,3 +23,27 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+// cypress/support/commands.js o cypress/support/index.js
+
+// Captura todas las excepciones no atrapadas durante la ejecución de las pruebas
+Cypress.on('uncaught:exception', (e) => {
+    // Si el mensaje de error incluye "Cannot redefine property: cookie", lo ignoramos
+    if (e.message.includes('Cannot redefine property: cookie')) {
+        // Retornar false evita que Cypress falle el test
+        return false;
+    }
+    // Si no es el error esperado, lanzamos la excepción
+    return true;
+});
+
+
+Cypress.Commands.add('ignoreScreenError', () => {
+    cy.on('uncaught:exception', (err, runnable) => {
+        if (err.message.includes("Cannot read properties of undefined (reading 'screen')")) {
+            console.log('Error ignorado:', err.message);
+            return false; // Evita que Cypress falle la prueba
+        }
+        return true;
+    });
+});

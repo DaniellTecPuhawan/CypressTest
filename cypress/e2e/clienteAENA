@@ -1,0 +1,27 @@
+describe('Checking 200 response', () => {
+    beforeEach(() => {
+        // Limpiar las cookies antes de cada prueba para asegurarse de que no haya cookies persistentes
+        cy.clearCookies();
+    });
+
+    it('Visit, accept cookies, and check 200 response', () => {
+        cy.wait(2500);
+
+        // Visitar la URL original
+        cy.visit('https://usuarios.aena.es/?gig_ssoToken=eu1_tk1.EYDcZ1xJ13hlehzCFfXbZiXSA_3HYBd37We1cmAovDw&gig_originSite=clubCliente', { timeout: 10000 }); // Acceder a la web
+        cy.get('button').contains('Aceptar').click({ force: true });
+        cy.wait(2500);
+
+
+
+        // Esperar un poco después de hacer clic en el botón de cookies para que se complete la acción
+        cy.wait(2000);
+
+        // Comprobar la respuesta HTTP (esto verifica que la página tenga estado 200)
+        cy.request('https://usuarios.aena.es/?gig_ssoToken=eu1_tk1.EYDcZ1xJ13hlehzCFfXbZiXSA_3HYBd37We1cmAovDw&gig_originSite=clubCliente')
+            .its('status') // Obtener el estado de la respuesta HTTP
+            .should('eq', 200); // Asegurarse de que el estado sea 200 (OK)
+
+        cy.wait(2500); // Esperar un poco más si es necesario
+    });
+});

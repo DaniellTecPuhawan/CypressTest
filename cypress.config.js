@@ -2,10 +2,10 @@ const { defineConfig } = require("cypress");
 
 module.exports = defineConfig({
   e2e: {
-    chromeWebSecurity: false, // Desactiva restricciones de seguridad (CORS)
-    experimentalSessionAndOrigin: true, // Permite pruebas en múltiples orígenes
+    chromeWebSecurity: false,  // Permite el acceso a múltiples dominios
+    experimentalSessionAndOrigin: true, // Habilita el soporte para múltiples orígenes
     setupNodeEvents(on, config) {
-      // Implementar eventos de Node si es necesario
+      // Agregar eventos si es necesario
     },
   },
 });

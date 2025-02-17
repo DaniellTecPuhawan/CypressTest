@@ -15,3 +15,15 @@
 
 // Import commands.js using ES2015 syntax:
 import './commands'
+
+// cypress/support/e2e.js
+
+cy.on('uncaught:exception', (err, runnable) => {
+    // Si el error es el que estamos buscando, lo ignoramos
+    if (err.message.includes("Cannot read properties of undefined (reading 'screen')")) {
+        console.log('Error ignorado:', err.message);
+        return false; // Evita que Cypress falle la prueba
+    }
+    // Si es otro error, lo lanzamos
+    return true;
+});
