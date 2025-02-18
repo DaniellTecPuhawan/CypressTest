@@ -15,7 +15,7 @@ describe('AENA Travel Web - Login Test', () => {
         cy.ignoreScreenError();
 
         // 1. Limpiar cookies previas para evitar conflictos
-        cy.clearCookies();
+        //cy.clearCookies();
 
         // 2. Configurar interceptación de la respuesta HTTP para verificar un código de estado 200
         cy.intercept('GET', 'https://clubcliente.aena.es/AenaClub/es/sessionFinished').as('sessionPageRequest');
@@ -50,8 +50,6 @@ describe('AENA Travel Web - Login Test', () => {
                 cy.url().should('include', 'usuarios.aena.es');
             });
 
-        cy.reload();
-
         // 7. Escribir en los campos de correo electrónico y contraseña
         cy.get('#gigya-login-form > div.gigya-layout-row.with-divider > div.gigya-layout-cell.responsive.with-site-login > div.gigya-composite-control.gigya-composite-control-textbox > input') // Selecciona el input con name="username"
             .type(email); // Escribe el correo electrónico en el campo
@@ -59,11 +57,20 @@ describe('AENA Travel Web - Login Test', () => {
         cy.get('#gigya-login-form > div.gigya-layout-row.with-divider > div.gigya-layout-cell.responsive.with-site-login > div.gigya-composite-control.gigya-composite-control-password > input') // Selecciona el input con name="password"
             .type(password); // Escribe la contraseña en el campo con un retraso de 100ms entre cada tecla
 
+        cy.wait(5000)
+
         cy.get('#gigya-login-form > div.gigya-layout-row.with-divider > div.gigya-layout-cell.responsive.with-site-login > div.gigya-composite-control.gigya-composite-control-submit.is-centered.is-aena-green-button > input')
             .click();
 
+        cy.intercept('GET', 'https://login.aena.es/sdk.config.get*', {
+            statusCode: 200,
+        }).as('sdkConfigRequest');
 
+        cy.wait(5000)
 
+        cy.visit('https://aenatravel.aena.es/es/')
+
+        cy.reload()
 
     });
 });
