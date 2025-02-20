@@ -68,9 +68,9 @@ describe('AENA Travel Web - Login Test', () => {
 
         cy.wait(5000)
 
-        cy.visit('https://aenatravel.aena.es/es/')
+        //cy.visit('https://aenatravel.aena.es/es/')
 
-        cy.reload()
+        //cy.reload()
 
     });
 });
