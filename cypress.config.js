@@ -2,9 +2,7 @@ const { defineConfig } = require("cypress");
 
 module.exports = defineConfig({
   e2e: {
-    pageLoadTimeout: 120000,
     chromeWebSecurity: false,  // Permite el acceso a múltiples dominios
-    baseUrl: 'https://clubcliente.aena.es/AenaClub/es/sessionFinished',
     env: {
       USERNAME: process.env.CYPRESS_USERNAME || 'daniell.tec@entelgy.com',
       PASSWORD: process.env.CYPRESS_PASSWORD || 'Arbust0@EN@1'

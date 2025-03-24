@@ -26,15 +26,15 @@
 
 // cypress/support/commands.js o cypress/support/index.js
 
-//Cypress.Commands.add('ignoreScreenError', () => {
-    //cy.on('uncaught:exception', (err, runnable) => {
-        //if (err.message.includes("Cannot read properties of undefined (reading 'screen')")) {
-            //console.log('Error ignorado:', err.message);
-            //return false; // Evita que Cypress falle la prueba
-        //}
-        //return true;
-    //});
-//});
+Cypress.Commands.add('ignoreScreenError', () => {
+    cy.on('uncaught:exception', (err, runnable) => {
+        if (err.message.includes("Cannot read properties of undefined (reading 'screen')")) {
+            console.log('Error ignorado:', err.message);
+            return false; // Evita que Cypress falle la prueba
+        }
+        return true;
+    });
+});
 
 // En el archivo support/commands.js
 Cypress.on('uncaught:exception', (err, runnable) => {
